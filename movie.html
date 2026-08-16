@@ -11,23 +11,29 @@
 
 <div id="movie-detail"></div>
 
-<script src="movies.js"></script>
 <script>
+  const API_URL = "https://moviebase-backend-0c76.onrender.com";
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
-  const movie = movies.find(function(m) { return m.id == id; });
-
   const detail = document.getElementById("movie-detail");
 
-  if (movie) {
-    detail.innerHTML =
-      "<h1>" + movie.title + "</h1>" +
-      "<video controls width='600' src='" + movie.videoUrl + "'></video>" +
-      "<p>" + movie.year + " | Rating: " + movie.rating + "</p>" +
-      "<p>" + movie.description + "</p>";
-  } else {
-    detail.innerHTML = "<p>Movie not found.</p>";
-  }
+  fetch(API_URL + "/movies/" + id)
+    .then(function(res) { return res.json(); })
+    .then(function(movie) {
+      if (!movie || movie.status === "not found") {
+        detail.innerHTML = "<p>Movie not found.</p>";
+        return;
+      }
+      detail.innerHTML =
+        "<h1>" + movie.title + "</h1>" +
+        "<video controls width='600' src='" + movie.videoUrl + "'></video>" +
+        "<p>" + movie.year + " | Rating: " + movie.rating + "</p>" +
+        "<p>" + movie.description + "</p>";
+    })
+    .catch(function(err) {
+      detail.innerHTML = "<p>Could not load movie.</p>";
+      console.error(err);
+    });
 </script>
 
 </body>

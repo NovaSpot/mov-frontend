@@ -11,23 +11,31 @@
 
 <div id="movies" class="grid"></div>
 
-<script src="movies.js"></script>
 <script>
+  const API_URL = "https://moviebase-backend-0c76.onrender.com";
   const container = document.getElementById("movies");
 
-  movies.forEach(function(movie) {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.onclick = function() {
-      window.location.href = "movie.html?id=" + movie.id;
-    };
-    div.innerHTML =
-      "<img src='" + movie.thumbnail + "'>" +
-      "<h3>" + movie.title + "</h3>" +
-      "<p>" + movie.year + " | Rating: " + movie.rating + "</p>" +
-      "<p>" + movie.description + "</p>";
-    container.appendChild(div);
-  });
+  fetch(API_URL + "/movies")
+    .then(function(res) { return res.json(); })
+    .then(function(movies) {
+      movies.forEach(function(movie) {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.onclick = function() {
+          window.location.href = "movie.html?id=" + movie.id;
+        };
+        div.innerHTML =
+          "<img src='" + movie.thumbnail + "'>" +
+          "<h3>" + movie.title + "</h3>" +
+          "<p>" + movie.year + " | Rating: " + movie.rating + "</p>" +
+          "<p>" + movie.description + "</p>";
+        container.appendChild(div);
+      });
+    })
+    .catch(function(err) {
+      container.innerHTML = "<p>Could not load movies.</p>";
+      console.error(err);
+    });
 </script>
 
 </body>
