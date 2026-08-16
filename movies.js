@@ -9,7 +9,7 @@
 const movies = [
   {
     id: 1,
-    title: "Sample Movie One",
+    title: "Interstellar",
     year: 2020,
     rating: 7.5,
     description: "A short placeholder description for movie one.",
@@ -18,7 +18,7 @@ const movies = [
   },
   {
     id: 2,
-    title: "Sample Movie Two",
+    title: "Inception",
     year: 2019,
     rating: 8.1,
     description: "A short placeholder description for movie two.",
@@ -27,7 +27,7 @@ const movies = [
   },
   {
     id: 3,
-    title: "Sample Movie Three",
+    title: "The Shining",
     year: 2021,
     rating: 6.9,
     description: "A short placeholder description for movie three.",
@@ -36,7 +36,7 @@ const movies = [
   },
   {
     id: 4,
-    title: "Sample Movie Four",
+    title: "Dead Poets Society",
     year: 2018,
     rating: 7.2,
     description: "A short placeholder description for movie four.",
@@ -45,7 +45,7 @@ const movies = [
   },
   {
     id: 5,
-    title: "Sample Movie Five",
+    title: "Thunderbolts",
     year: 2022,
     rating: 8.8,
     description: "A short placeholder description for movie five.",
